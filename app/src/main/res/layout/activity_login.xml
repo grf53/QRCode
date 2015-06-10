@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/logo_start"
+    android:background="@drawable/ic_launcher"
     tools:context="software.experiment3.assignment01.MainActivity" >
 
     <RelativeLayout
@@ -16,18 +16,18 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:visibility="invisible">
-	    <Button
-	        android:id="@+id/button_login"
-	        android:layout_width="100dp"
-	        android:layout_height="100dp"
-	        android:layout_alignParentRight="true"
-	        android:layout_alignParentEnd="true"
-	        android:text="@string/button_login"
-	        android:textColor="#F000"
+		<Button
+			android:id="@+id/button_login"
+			android:layout_width="150dp"
+			android:layout_height= "130dp"
+			android:layout_alignParentRight="true"
+			android:layout_alignParentEnd="true"
+			android:text="@string/button_login"
+			android:textColor="#F000"
 			android:textSize="25sp"/>
-	
-	    
-		<RelativeLayout 
+
+
+		<RelativeLayout
 		    android:id="@+id/container_edit"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
@@ -38,8 +38,8 @@
 		    android:layout_toLeftOf="@id/button_login"
 		    android:layout_toStartOf="@id/button_login"
 		    android:padding="10dp">
-		    
-		    <EditText 
+
+		    <EditText
 		        android:id="@+id/edit_id"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
@@ -48,8 +48,8 @@
 		        android:textColor="#F000"
 	        		android:textColorHint="#7000"
 				android:textSize="25sp"/>
-		    
-		    <EditText 
+
+		    <EditText
 		        android:id="@+id/edit_pw"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"

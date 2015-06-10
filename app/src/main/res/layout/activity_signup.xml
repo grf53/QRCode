@@ -1,224 +1,259 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#fff3f6ff"
-    android:orientation="vertical"
-    android:padding="30dp">
-
-    <LinearLayout
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffffff"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="#ffffffff"
+        android:orientation="vertical"
+        android:padding="30dp">
 
-        <TextView
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id = "@+id/textView0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_orange"
+                android:text="회원가입"
+                android:gravity="center"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="#ff000000"
+                />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="회원가입"
-            android:gravity="center"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:textColor="#ff4936ff"
-            />
-    </LinearLayout>
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:orientation="horizontal">
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/round_orange"
+                android:gravity="center_vertical"
+                android:text="  아이디"
+                android:textColor="#ff000000"
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:background="#213d9ddb"
-            android:gravity="center_vertical"
-            android:text="  아이디"
-            android:textColor="#ff000000"
-            android:textSize="13sp"
-            android:textStyle="bold" />
+            <EditText
+                android:id = "@+id/edit_id"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/round_white"
+                android:textColor="#ff000000"
+                android:textColorHint="#7000"
+                android:hint=" ID"
 
-        <EditText
-            android:id = "@+id/edit_id"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
-            android:background="#ffffffff"
-            android:textColor="#ff000000"
 
-            android:textSize="15sp" />
+                android:textSize="15sp" />
 
-        <Button
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:text="중복확인"
-            android:textSize="13sp" />
-    </LinearLayout>
+            <Button
+                android:id = "@+id/btn_ID_Check"
+                android:onClick="onClick"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:text="중복확인"
+                android:textSize="13sp" />
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:background="#213d9ddb"
-            android:gravity="center_vertical"
-            android:text="  비밀번호"
-            android:textColor="#ff000000"
-            android:textSize="13sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id = "@+id/edit_password"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
-            android:background="#ffffffff"
-            android:textColor="#ff000000"
-
-            android:textSize="15sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:background="#213d9ddb"
-            android:gravity="center_vertical"
-            android:text="  비밀번호확인"
-            android:textColor="#ff000000"
-            android:textSize="13sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
-            android:background="#ffffffff"
-            android:textColor="#ff000000"
-
-            android:textSize="15sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:background="#213d9ddb"
-            android:gravity="center_vertical"
-            android:text="  이메일"
-            android:textColor="#ff000000"
-            android:textSize="13sp"
-            android:textStyle="bold" />
-
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
-            android:background="#ffffffff"
-            android:textColor="#ff000000"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
 
-            android:textSize="15sp" />
-    </LinearLayout>
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/round_orange"
+                android:gravity="center_vertical"
+                android:text="  비밀번호"
+                android:textColor="#ff000000"
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal">
+            <EditText
+                android:id = "@+id/edit_password"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/round_white"
+                android:textColor="#ff000000"
+                android:textSize="15sp"
+                android:textColorHint="#7000"
+                android:hint=" PW"
+                />
 
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:background="#213d9ddb"
-            android:gravity="center_vertical"
-            android:text="  휴대폰"
-            android:textColor="#ff000000"
-            android:textSize="13sp"
-            android:textStyle="bold" />
+        </LinearLayout>
 
-        <EditText
-            android:layout_width="50dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
-            android:background="#ffffffff"
-            android:textColor="#ff000000"
-            android:textSize="15sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="20dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text=" - "
-            android:textSize="15sp" />
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/round_orange"
+                android:gravity="center_vertical"
+                android:text="  비밀번호확인"
+                android:textColor="#ff000000"
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
-        <EditText
-            android:layout_width="50dp"
-            android:layout_height="30dp"
-            android:background="#ffffffff"
-            android:textColor="#ff000000"
-            android:textSize="15sp" />
+            <EditText
+                android:id = "@+id/edit_password2"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/round_white"
+                android:textColor="#ff000000"
+                android:textColorHint="#7000"
+                android:hint=" Password check"
 
-        <TextView
-            android:layout_width="20dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text=" - "
-            android:textSize="15sp" />
+                android:textSize="15sp" />
 
-        <EditText
-            android:layout_width="50dp"
-            android:layout_height="30dp"
-            android:background="#ffffffff"
-            android:textColor="#ff000000"
-            android:textSize="15sp" />
+        </LinearLayout>
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/round_orange"
+                android:gravity="center_vertical"
+                android:text="  이메일"
+                android:textColor="#ff000000"
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
-        <Button
+            <EditText
+                android:id = "@+id/edit_email"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/round_white"
+                android:textColor="#ff000000"
+                android:textColorHint="#7000"
+                android:hint=" ID@site.com"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/round_orange"
+                android:gravity="center_vertical"
+                android:text="  휴대폰"
+                android:textColor="#ff000000"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id = "@+id/edit_phone1"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/round_white"
+                android:textColor="#ff000000"
+                android:textSize="15sp"
+                android:textColorHint="#7000"
+                android:hint=" 010"
+                />
+
+            <TextView
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text=" - "
+                android:textSize="15sp" />
+
+            <EditText
+                android:id = "@+id/edit_phone2"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:background="@drawable/round_white"
+                android:textColor="#ff000000"
+                android:textSize="15sp"
+                android:textColorHint="#7000"
+                android:hint=" 0000"
+                />
+
+            <TextView
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text=" - "
+                android:textSize="15sp" />
+
+            <EditText
+                android:id = "@+id/edit_phone3"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:background="@drawable/round_white"
+                android:textColor="#ff000000"
+                android:textSize="15sp"
+                android:textColorHint="#7000"
+                android:hint=" 0000"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="이전"
-            android:textColor="#ff000000"
-            android:textSize="20sp"
-            android:clickable="true"
-            android:background="#ffffffff"
-            />
+            android:layout_marginTop="80dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
 
-        <Button
-            android:id = "@+id/btn_OK"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:text="확인"
-            android:textColor="#ffffffff"
-            android:textSize="20sp"
-            android:clickable="true"
-            android:background="#ff4936ff"
-            />
+            <Button
+                android:id = "@+id/btn_Cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이전"
+                android:textColor="#ff000000"
+                android:textSize="20sp"
+                android:clickable="true"
+                android:background="#ffffffff"
+                android:onClick="onClick"
+                />
+
+            <Button
+                android:id = "@+id/btn_OK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:text="확인"
+                android:textColor="#ffffffff"
+                android:textSize="20sp"
+                android:clickable="true"
+                android:background="#ffff5549"
+                android:onClick="onClick"
+                />
+
+        </LinearLayout>
+
 
     </LinearLayout>
-
-
-</LinearLayout>
+</ScrollView>

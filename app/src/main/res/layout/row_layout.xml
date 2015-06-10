@@ -3,26 +3,34 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView 
+    <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:id="@+id/image_bullet"
-        android:src="@drawable/star"
-        android:padding="10dp"/>
+        android:src="@drawable/magnifier"
+        android:padding="5dp"/>
+
+    <ImageView
+        android:id="@+id/image_lost"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/lost"
+        android:padding="5dp"/>
 
     <TextView
         android:id="@+id/text_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@id/image_lost"
+        android:layout_toStartOf="@id/image_lost"
         android:layout_toEndOf="@+id/image_bullet"
         android:layout_toRightOf="@+id/image_bullet"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:padding="5dp"
         android:text="@string/hello_world"
         android:textColor="#000"
         android:textSize="25sp" />
-
 </RelativeLayout>

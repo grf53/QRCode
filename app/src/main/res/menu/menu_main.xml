@@ -1,11 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="software.experiment3.assignmentmid.MainActivity" >
+    xmlns:QRcode="http://schemas.android.com/apk/res-auto"
+    tools:context="software.experiment.qrcode.MainActivity" >
 
     <item
         android:id="@+id/action_add_item"
         android:orderInCategory="100"
-        android:showAsAction="always"
+        QRcode:showAsAction="always"
         android:title="@string/action_add_item"
         android:icon="@android:drawable/ic_menu_add"/>
 
