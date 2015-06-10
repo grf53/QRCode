@@ -1,5 +1,6 @@
 package software.experiment.qrcode;
 
+import software.experiment.qrcode.login.LoginActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -27,29 +28,45 @@ public class MainActivity extends Activity {
 	private ListView listView;
 	private CustomAdapter adapter;
 	private LayoutInflater inflater;
-	private boolean loggedIn = false;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if(!loggedIn){
-			Intent loginActivityIntent = new Intent(getApplicationContext(), LoginActivity.class);
-			startActivity(loginActivityIntent);
-		}
-		
+
+		Intent loginActivityIntent = new Intent(getApplicationContext(),
+				LoginActivity.class);
+		startActivity(loginActivityIntent);
+
 		setContentView(R.layout.activity_main);
-				
+
 		listView = (ListView) findViewById(R.id.list_view);
-		adapter = new CustomAdapter(getApplicationContext(), R.layout.row_layout, tvShows);
+		adapter = new CustomAdapter(getApplicationContext(),
+				R.layout.row_layout, tvShows);
 		listView.setAdapter(adapter);
-		
+
 		inflater = LayoutInflater.from(getApplicationContext());
-		
+
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-				
+			public void onItemClick(AdapterView<?> parent, View view,
+					final int position, long id) {
+
+//				final String dirPath = Environment.getExternalStorageDirectory()+"/QRCode";
+//		    		final String filePath = dirPath+"/phonebook.txt";
+//		    		Intent msg = new Intent(Intent.ACTION_SEND);
+
+//		    		msg.addCategory(Intent.CATEGORY_DEFAULT);
+//		    		msg.putExtra(Intent.EXTRA_SUBJECT, "林力");
+//		    		msg.putExtra(Intent.EXTRA_TEXT, "郴侩");
+//		    		msg.putExtra(Intent.EXTRA_TITLE, "力格");
+//		    		msg.setType("text/plain");    
+//		    		startActivity(Intent.createChooser(msg, "傍蜡"));
+		    		
+//		    		File dir = new File(dirPath);
+//		    		if(!dir.exists())
+//		    			dir.mkdirs();
+//		    		new BufferedWriter(new FileWriter(filePath, true)).append();
 			}
 		});
 	}
@@ -57,7 +74,7 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.menu_main, menu);
 		return true;
 	}
 
@@ -68,34 +85,44 @@ public class MainActivity extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_add_item) {
-			View dialogView = inflater.inflate(R.layout.dialog_layout, (ViewGroup) findViewById(R.id.root_dialog));
-			
-			final EditText editDialog = (EditText) dialogView.findViewById(R.id.edit_name_dialog);
-			
+			View dialogView = inflater.inflate(R.layout.dialog_layout,
+					(ViewGroup) findViewById(R.id.root_dialog));
+
+			final EditText editDialog = (EditText) dialogView
+					.findViewById(R.id.edit_name_dialog);
+
 			AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
-			.setTitle("Modify TV show")
-			.setMessage("Original Title: ")
-			
-			.setPositiveButton("Modify", new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					
-					String editString = editDialog.getText().toString(); 
-					if(editString == null || editString.length() == 0)
-						dialog.dismiss();
-					else{
-						// tvShows[position] = editString; //data changed
-						adapter.notifyDataSetChanged();
-						
-						Toast.makeText(getApplicationContext(), "Modified!", Toast.LENGTH_SHORT).show();
-					}
-				}
-			})
-			.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					dialog.dismiss();
-				}
-			}).create();
-			
+					.setTitle("Modify TV show")
+					.setMessage("Original Title: ")
+					.setPositiveButton("Modify",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+
+									String editString = editDialog.getText().toString();
+									if (editString == null
+											|| editString.length() == 0){
+										dialog.dismiss();
+									}
+									else {
+										// tvShows[position] = editString;
+										// //data changed
+										adapter.notifyDataSetChanged();
+
+										Toast.makeText(getApplicationContext(),
+												"Modified!", Toast.LENGTH_SHORT)
+												.show();
+									}
+								}
+							})
+					.setNegativeButton("Cancel",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+									dialog.dismiss();
+								}
+							}).create();
+
 			dialog.setView(dialogView);
 			dialog.show();
 			return true;
