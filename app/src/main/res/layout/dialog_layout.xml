@@ -1,0 +1,18 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" 
+    android:id="@+id/root_dialog">
+
+    <EditText
+        android:id="@+id/edit_name_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="center_vertical"
+        android:textColor="#F000"
+        android:textColorHint="#5000"
+        android:textSize="25sp" />
+
+</RelativeLayout>
