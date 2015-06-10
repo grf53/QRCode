@@ -1,0 +1,72 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/logo_start"
+    tools:context="software.experiment3.assignment01.MainActivity" >
+
+    <RelativeLayout
+        android:id="@+id/layout_contents"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="invisible">
+	    <Button
+	        android:id="@+id/button_login"
+	        android:layout_width="100dp"
+	        android:layout_height="100dp"
+	        android:layout_alignParentRight="true"
+	        android:layout_alignParentEnd="true"
+	        android:text="@string/button_login"
+	        android:textColor="#F000"
+			android:textSize="25sp"/>
+	
+	    
+		<RelativeLayout 
+		    android:id="@+id/container_edit"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_alignParentLeft="true"
+		    android:layout_alignParentStart="true"
+		    android:layout_alignTop="@id/button_login"
+		    android:layout_alignBottom="@id/button_login"
+		    android:layout_toLeftOf="@id/button_login"
+		    android:layout_toStartOf="@id/button_login"
+		    android:padding="10dp">
+		    
+		    <EditText 
+		        android:id="@+id/edit_id"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentTop="true"
+		        android:hint="@string/edit_id_hint"
+		        android:textColor="#F000"
+	        		android:textColorHint="#7000"
+				android:textSize="25sp"/>
+		    
+		    <EditText 
+		        android:id="@+id/edit_pw"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_below="@id/edit_id"
+		        android:layout_alignParentBottom="true"
+		        android:hint="@string/edit_pw_hint"
+		        android:textColor="#F000"
+	        		android:textColorHint="#7000"
+				android:textSize="25sp"/>
+		</RelativeLayout>
+		<Button
+	        android:id="@+id/button_signup"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@id/container_edit"
+	        android:text="@string/button_signup"
+	        android:textColor="#F000"
+	        	android:textSize="20sp"/>
+    </RelativeLayout>
+</RelativeLayout>
