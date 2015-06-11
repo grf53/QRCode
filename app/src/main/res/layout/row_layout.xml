@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
+    <ImageView 
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:id="@+id/image_bullet"
@@ -11,7 +11,7 @@
         android:padding="5dp"/>
 
     <ImageView
-        android:id="@+id/image_lost"
+        android:id="@+id/image_list_item_lost"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentEnd="true"
@@ -20,12 +20,12 @@
         android:padding="5dp"/>
 
     <TextView
-        android:id="@+id/text_title"
+        android:id="@+id/text_list_item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@id/image_lost"
-        android:layout_toStartOf="@id/image_lost"
+        android:layout_toLeftOf="@id/image_list_item_lost"
+        android:layout_toStartOf="@id/image_list_item_lost"
         android:layout_toEndOf="@+id/image_bullet"
         android:layout_toRightOf="@+id/image_bullet"
         android:gravity="center"
