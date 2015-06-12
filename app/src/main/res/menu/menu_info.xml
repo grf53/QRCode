@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="software.experiment3.assignmentmid.MainActivity" >
+
+    <item
+        android:id="@+id/action_save_qrcode"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="@string/action_save_qrcode"
+        android:icon="@mipmap/content_save_white"/>
+    
+    <item
+        android:id="@+id/action_share_qrcode"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="@string/action_share_qrcode"
+        android:icon="@mipmap/social_share_white"/>
+    
+    <item
+        android:id="@+id/action_remove_item"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_remove_item"
+        android:icon="@mipmap/content_remove_white"/>
+
+</menu>
+
