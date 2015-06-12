@@ -1,34 +1,56 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_dialog"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" 
-    android:id="@+id/root_dialog">
+    android:layout_height="wrap_content" >
 
     <EditText
-        android:id="@+id/edit_name_dialog"
+        android:id="@+id/edit_item_name_dialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-
-        android:gravity="center_vertical"
+        android:layout_marginStart="10dp"
+        android:gravity="end"
+        android:hint="@string/edit_hint_item_name"
+        android:inputType="text"
         android:textColor="#F000"
         android:textColorHint="#5000"
-        android:textSize="25sp"
-        android:hint="Name"/>
+        android:textSize="25sp" />
 
-    <EditText
-        android:id="@+id/edit_price_dialog"
+    <RelativeLayout
+        android:id="@+id/container_price_dialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_below="@id/edit_item_name_dialog"
         android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp" >
 
-        android:layout_below="@id/edit_name_dialog"
-        android:gravity="center_vertical"
-        android:textColor="#F000"
-        android:textColorHint="#5000"
-        android:textSize="25sp"
-        android:hint="Price"/>
+        <EditText
+            android:id="@+id/edit_price_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/text_unit_dialog"
+            android:layout_toStartOf="@+id/text_unit_dialog"
+            android:gravity="end"
+            android:hint="@string/edit_hint_price"
+            android:inputType="number"
+            android:textColor="#F000"
+            android:textColorHint="#5000"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/text_unit_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/edit_price_dialog"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/edit_price_dialog"
+            android:gravity="center_vertical"
+            android:text="@string/text_unit_manwon"
+            android:textColor="#F000"
+            android:textColorHint="#5000"
+            android:textSize="25sp" />
+    </RelativeLayout>
 
 </RelativeLayout>

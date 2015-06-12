@@ -3,22 +3,33 @@
 
     <string name="app_name">QRcode</string>
     <string name="hello_world">Hello world!</string>
-    <string name="action_add_item">Add Item</string>
+    
+    <string name="action_add_item">물품 추가</string>
+    <string name="action_save_qrcode">QR Code 저장</string>
+    <string name="action_share_qrcode">QR Code 공유</string>
+    <string name="action_remove_item">물품 제거</string>
+    
     <string name="description_starting_logo">Logo</string>
+    <string name="description_qrcode_info">QRCode</string>
+    
     <string name="label_login">로그인</string>
     <string name="label_signup">회원가입</string>
+    
     <string name="text_id">아이디</string>
     <string name="text_pw">비밀번호</string>
     <string name="text_pw_check">비밀번호확인</string>
     <string name="text_email">이메일</string>
     <string name="text_phone">전화번호</string>
-    <string name="edit_id_hint">ID</string>
-    <string name="edit_pw_hint">Password</string>
-    <string name="edit_pw_check_hint">Password Check</string>
-    <string name="edit_email_hint">name@example.com</string>
-    <string name="edit_phone_hint">010–1234–5678</string>
+    <string name="text_unit_manwon">만 원</string>
+    
+    <string name="edit_hint_id">ID</string>
+    <string name="edit_hint_pw">Password</string>
+    <string name="edit_hint_pw_check">Password Check</string>
+    <string name="edit_hint_email">name@example.com</string>
+    <string name="edit_hint_phone">010–1234–5678</string>
+    <string name="edit_hint_item_name">이름</string>
+    <string name="edit_hint_price">가격</string>
+    
     <string name="button_confirm">확인</string>
-
     <string name="button_add">추가</string>
-
 </resources>

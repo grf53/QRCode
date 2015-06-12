@@ -1,9 +1,19 @@
 package software.experiment.qrcode;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
+import software.experiment.qrcode.database.DatabaseHelper;
+import software.experiment.qrcode.database.Item;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,29 +25,43 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+
 public class MainActivity extends Activity {
 
-	private String[] tvShows = { "Saturday Night Live", "House of Cards",
+/*	private String[] tvShows = { "Saturday Night Live", "House of Cards",
 			"Game of Thrones", "The Flash", "Marvel's Agent of S.H.I.E.L.D",
 			"Pushing Daisies", "Better of Ted", "Twin Peaks",
 			"Freaks and Geeks", "Orphan Black", "Walking Dead", "Breaking Bad",
-			"The 400", "Alphas", "Life of Mars" };
+			"The 400", "Alphas", "Life of Mars" };*/
 
+	private String userID;
+	public static final String serverAddress = "localhost";
+	public static final String appPort = String.valueOf(10000);
+	
+	public static final String fileNamePrefix = "qrcode-";
+	public static final String fileNamePostfix = ".png";
+	
 	private ListView listView;
-	private CustomAdapter adapter;
+	private CustomCursorAdapter adapter;
 	private LayoutInflater inflater;
+	private DatabaseHelper dbHelper;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		Intent intent = getIntent();
+		userID = intent.getStringExtra("USER_ID");
 
+		dbHelper = new DatabaseHelper(getApplicationContext());
 		listView = (ListView) findViewById(R.id.list_view);
-		adapter = new CustomAdapter(getApplicationContext(),
-				R.layout.row_layout, tvShows);
+		adapter = new CustomCursorAdapter(getApplicationContext(), 
+											dbHelper.getDBCursor(), false);
 //		adapter = new SimpleCursorAdapter(this, R.layout.row_layout, getDBCursor,
 //				DatabaseOpenHelper.columns, new int[] { R.id._id, R.id.name }, 0);
-
 		listView.setAdapter(adapter);
 
 		inflater = LayoutInflater.from(getApplicationContext());
@@ -47,26 +71,21 @@ public class MainActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					final int position, long id) {
-
-//				final String dirPath = Environment.getExternalStorageDirectory()+"/QRCode";
-//		    		final String filePath = dirPath+"/phonebook.txt";
-//		    		Intent msg = new Intent(Intent.ACTION_SEND);
-
-//		    		msg.addCategory(Intent.CATEGORY_DEFAULT);
-//		    		msg.putExtra(Intent.EXTRA_SUBJECT, "주제");
-//		    		msg.putExtra(Intent.EXTRA_TEXT, "내용");
-//		    		msg.putExtra(Intent.EXTRA_TITLE, "제목");
-//		    		msg.setType("text/plain");    
-//		    		startActivity(Intent.createChooser(msg, "공유"));
-		    		
-//		    		File dir = new File(dirPath);
-//		    		if(!dir.exists())
-//		    			dir.mkdirs();
-//		    		new BufferedWriter(new FileWriter(filePath, true)).append();
+				Item itemOnPosition = dbHelper.getItemByIndex(position);
+				Intent intent = new Intent(getApplicationContext(), ItemInfoActivity.class);
+				intent.putExtra("ITEM", itemOnPosition);
+				startActivity(intent);
 			}
 		});
 	}
 
+	@Override
+		protected void onResume() {
+			dbHelper.renewCursorAdapter(adapter);
+			adapter.notifyDataSetChanged();
+			super.onResume();
+		}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -79,39 +98,49 @@ public class MainActivity extends Activity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_add_item) {
+		switch(item.getItemId()){
+		case R.id.action_add_item :
 			View dialogView = inflater.inflate(R.layout.dialog_layout,
 					(ViewGroup) findViewById(R.id.root_dialog));
 
-			final EditText editDialog = (EditText) dialogView
-					.findViewById(R.id.edit_name_dialog);
-
+			final EditText editItemNameDialog = (EditText) dialogView
+					.findViewById(R.id.edit_item_name_dialog);
+			final EditText editPriceDialog = (EditText) dialogView
+					.findViewById(R.id.edit_price_dialog);
+			
 			AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
-					.setTitle("Modify TV show")
-					.setMessage("Original Title: ")
-					.setPositiveButton("Modify",
+					.setTitle("물품 추가")
+					.setMessage("이름과 만 원 단위의 가격을 적고 확인을 눌러주세요.")
+					.setPositiveButton("확인",
 							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int which) {
+								public void onClick(DialogInterface dialog, int which) {
 
-									String editString = editDialog.getText().toString();
-									if (editString == null
-											|| editString.length() == 0){
+									String stringEditItemName = editItemNameDialog.getText().toString();
+									String stringEditPrice = editPriceDialog.getText().toString();
+									if (stringEditItemName == null || stringEditItemName.length() == 0
+										|| stringEditPrice == null || stringEditPrice.length() == 0){
 										dialog.dismiss();
 									}
 									else {
-										// tvShows[position] = editString;
-										// //data changed
-										adapter.notifyDataSetChanged();
+										dbHelper.insert(stringEditItemName, false,
+														Integer.parseInt(stringEditPrice),
+														getQRCodePath(stringEditItemName));
+										
+										if(generateQRCode(dbHelper.getLast_id())){
+											Item itemJustPut = dbHelper.getItemById(dbHelper.getLast_id());
+											
+											Intent intent = new Intent(getApplicationContext(), ItemInfoActivity.class);
+											intent.putExtra("ITEM", itemJustPut);
+											startActivity(intent);
+										}
 
 										Toast.makeText(getApplicationContext(),
-												"Modified!", Toast.LENGTH_SHORT)
+												"Working", Toast.LENGTH_SHORT)
 												.show();
 									}
 								}
 							})
-					.setNegativeButton("Cancel",
+					.setNegativeButton("취소",
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int which) {
@@ -124,5 +153,35 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	private String getQRCodePath(String itemName){
+		return fileNamePrefix+itemName+fileNamePostfix;
+	}
+	
+	private String getQRCodeContents(int _id){
+		return serverAddress+":"+appPort+"/userID="+userID+"&"+"itemID="+_id;
+	}
+	
+	private boolean generateQRCode(int _id){
+		boolean success = false;
+		try {
+			Bitmap bitmap = QRCodeGenerator.encodeAsBitmap(
+								getQRCodeContents(_id),
+								BarcodeFormat.QR_CODE,
+								1000, 1000);
+			final FileOutputStream fos = openFileOutput(
+												dbHelper.getItemById(_id).getQRCodeFileName(),
+												Context.MODE_WORLD_READABLE);
+			success = bitmap.compress(CompressFormat.PNG, 0, fos); 
+		} catch (WriterException e) {
+			Log.e("QRCODE", e.getLocalizedMessage());
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			Log.e("QRCODE", e.getLocalizedMessage());
+			e.printStackTrace();
+		}
+		
+		return success;
 	}
 }

@@ -1,62 +1,60 @@
 package software.experiment.qrcode.login;
 
+import software.experiment.qrcode.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import software.experiment.qrcode.R;
-
 public class SignupActivity extends Activity {
 
+	private Button buttonConfirm;
+	private EditText editID;
+	private EditText editPW;
+	private EditText editPWCheck;
+	private EditText editEmail;
+	private EditText editPhone;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_signup);
-	}
+		buttonConfirm = (Button) findViewById(R.id.button_signup_confirm);
+		editID = (EditText) findViewById(R.id.edit_signup_id);
+		editPW = (EditText) findViewById(R.id.edit_signup_pw);
+		editPWCheck = (EditText) findViewById(R.id.edit_signup_pw_check);
+		editEmail = (EditText) findViewById(R.id.edit_signup_email);
+		editPhone = (EditText) findViewById(R.id.edit_signup_phone);
+		
+		buttonConfirm.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				String stringID = editID.getText().toString().trim();
+				String stringPW = editPW.getText().toString().trim();
+				String stringPWCheck = editPWCheck.getText().toString().trim();
+				String stringEmail = editEmail.getText().toString().trim();
+				String stringPhone = editPhone.getText().toString().trim();
 
-	public void onClick(View view) {
-
-		switch (view.getId()) {
-			case R.id.btn_OK:
-				EditText editID = (EditText) findViewById(R.id.edit_id);
-				EditText editPW = (EditText) findViewById(R.id.edit_password);
-				EditText editPW2 = (EditText) findViewById(R.id.edit_password2);
-				EditText editEmail = (EditText) findViewById(R.id.edit_email);
-				EditText editphone1 = (EditText) findViewById(R.id.edit_phone1);
-				EditText editphone2 = (EditText) findViewById(R.id.edit_phone2);
-				EditText editphone3 = (EditText) findViewById(R.id.edit_phone3);
-
-
-				if (editID.getText().toString().equals("") || editPW.getText().toString().equals("") || editPW2.getText().toString().equals("") || editEmail.getText().toString().equals("") ||
-						editphone1.getText().toString().equals("") || editphone2.getText().toString().equals("") || editphone3.getText().toString().equals("")) {
+				if (stringID.equals("")
+						|| stringPW.equals("")
+						|| stringPWCheck.equals("")
+						|| stringEmail.equals("") 
+						|| stringPhone.equals("")) {
 					Toast.makeText(SignupActivity.this, "Fill all contents.", Toast.LENGTH_SHORT).show();
-					break;
-				} else if (!editPW.getText().toString().equals(editPW2.getText().toString())) {
-
+				}
+				else if (!stringPW.equals(stringPWCheck)) {
 					Toast.makeText(SignupActivity.this, "check your password.", Toast.LENGTH_SHORT).show();
 					editPW.setText("");
-					editPW2.setText("");
-					break;
-
-				} else if (!editEmail.getText().toString().contains("@")) {
-
-					Toast.makeText(SignupActivity.this, "check your email.", Toast.LENGTH_SHORT).show();
-					editEmail.setText("");
-					break;
-
-				} else {
-					Toast.makeText(SignupActivity.this, "Success", Toast.LENGTH_SHORT).show();
+					editPWCheck.setText("");
 				}
-
-
-				break;
-			case R.id.btn_Cancel:
-				finish();
-				break;
-			case R.id.btn_ID_Check:
-				Toast.makeText(SignupActivity.this, "ID check!", Toast.LENGTH_SHORT).show();
-				break;
-		}
-	}}
+				else {
+					Toast.makeText(SignupActivity.this, "Success", Toast.LENGTH_SHORT).show();
+				}				
+			}
+		});
+	}
+}
