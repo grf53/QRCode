@@ -1,37 +1,44 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/round_white_orange"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    >
     
     <ImageView
         android:id="@+id/image_list_bullet" 
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:src="@drawable/star"
         android:padding="5dp"/>
 
     <ImageView
         android:id="@+id/image_list_item_lost"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:src="@drawable/magnifier"
-        android:padding="5dp"/>
+        android:padding="5dp"
+        />
 
     <TextView
         android:id="@+id/text_list_item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/image_list_bullet"
         android:layout_toRightOf="@id/image_list_bullet"
         android:layout_toEndOf="@id/image_list_bullet"
         android:layout_toLeftOf="@id/image_list_item_lost"
         android:layout_toStartOf="@id/image_list_item_lost"
+        android:layout_gravity="center"
+        android:layout_centerVertical="true"
         android:gravity="center"
-        android:padding="10dp"
+        android:padding="5dp"
         android:text="@string/hello_world"
-        android:textColor="#000"
-        android:textSize="25sp" />
+        android:textColor="#f000"
+        android:textSize="18sp"
+        />
     
 </RelativeLayout>

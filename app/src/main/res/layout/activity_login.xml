@@ -8,21 +8,47 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="software.experiment.qrcode.login.LoginActivity" >
-    
-	<TextView
-        android:id="@+id/text_label_login"
+
+    <RelativeLayout
+        android:id="@+id/topPanel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/container_form"
-        android:background="@drawable/round_orange"
-        android:gravity="center"
-        android:padding="15dp"
-        android:text="@string/label_login"
-        android:textColor="#f000"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:layout_margin="10dp" />
-    
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        >
+
+        <ImageView
+            android:id="@+id/image_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="130dp"
+            android:src="@drawable/logo"
+            android:padding="5dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            />
+
+        <TextView
+            android:id="@+id/text_label_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_orange"
+            android:padding="15dp"
+            android:text="@string/label_login"
+            android:gravity="center"
+            android:textColor="#f000"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/image_logo"
+            android:layout_margin="10dp"
+            />
+
+    </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/container_form"
         android:layout_width="match_parent"
@@ -31,7 +57,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true" >
+        android:layout_below="@id/topPanel">
 
         <TextView
             android:id="@+id/text_login_id"
