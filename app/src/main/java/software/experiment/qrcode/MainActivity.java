@@ -1,5 +1,6 @@
 package software.experiment.qrcode;
 
+<<<<<<< HEAD
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -10,6 +11,8 @@ import software.experiment.qrcode.database.DatabaseHelper;
 import software.experiment.qrcode.database.Item;
 import software.experiment.qrcode.login.LoginActivity;
 import software.experiment.qrcode.network.SocketInterface;
+=======
+>>>>>>> origin/master
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -33,6 +36,12 @@ import android.widget.Toast;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
+import software.experiment.qrcode.database.DatabaseHelper;
+import software.experiment.qrcode.database.Item;
+
 public class MainActivity extends Activity {
 
 	private String userID;
@@ -47,11 +56,17 @@ public class MainActivity extends Activity {
 	private LayoutInflater inflater;
 	private DatabaseHelper dbHelper;
 
+	private Context context;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+<<<<<<< HEAD
+=======
+		
+>>>>>>> origin/master
 		Intent intent = getIntent();
 		userID = intent.getStringExtra("USER_ID");
 
@@ -74,6 +89,7 @@ public class MainActivity extends Activity {
 						ItemInfoActivity.class);
 				intent.putExtra("ITEM", itemOnPosition);
 				startActivity(intent);
+
 			}
 		});
 	}
@@ -136,11 +152,19 @@ public class MainActivity extends Activity {
 					.findViewById(R.id.edit_item_name_dialog);
 			final EditText editPriceDialog = (EditText) dialogView
 					.findViewById(R.id.edit_price_dialog);
+<<<<<<< HEAD
 
 			AlertDialog dialogAdd = new AlertDialog.Builder(MainActivity.this)
 					.setTitle("물품 추가")
 					.setMessage("이름과 만 원 단위의 가격을 적고 확인을 눌러주세요.")
 					.setPositiveButton("확인",
+=======
+			
+			AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
+					.setTitle("Add item")
+					.setMessage("Please enter name and price(won).")
+					.setPositiveButton("OK",
+>>>>>>> origin/master
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int which) {
@@ -172,6 +196,7 @@ public class MainActivity extends Activity {
 													ItemInfoActivity.class);
 											intent.putExtra("ITEM", itemJustPut);
 											startActivity(intent);
+
 										}
 
 										Toast.makeText(getApplicationContext(),
@@ -180,7 +205,7 @@ public class MainActivity extends Activity {
 									}
 								}
 							})
-					.setNegativeButton("취소",
+					.setNegativeButton("Cancel",
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int which) {
