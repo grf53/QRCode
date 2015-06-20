@@ -13,12 +13,12 @@ public class StartActivity extends Activity {
 		
 	private SharedPreferences sharedPreferences;
 	private boolean loggedIn;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_start);
-		sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+		sharedPreferences = getSharedPreferences("LOGIN", Context.MODE_PRIVATE);
         loggedIn = sharedPreferences.getBoolean("LOGGED_IN", false);
 		
 		new Handler().postDelayed(new Runnable() {

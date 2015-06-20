@@ -1,16 +1,7 @@
 package software.experiment.qrcode;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import software.experiment.qrcode.database.DatabaseHelper;
-import software.experiment.qrcode.database.Item;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ContentProvider;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -25,12 +16,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import software.experiment.qrcode.database.DatabaseHelper;
+import software.experiment.qrcode.database.Item;
+
 public class ItemInfoActivity extends Activity {
 	
-	public static final String publicDirectoryPath = "QRCode"; 
-	
+	public static final String publicDirectoryPath = "QRCode";
 	Item item;
-	
 	private ImageView imageQRCode;
 	private TextView textItemName;
 	private TextView textPrice;
@@ -62,8 +60,8 @@ public class ItemInfoActivity extends Activity {
 		if(bitmapQRCode != null)
 			imageQRCode.setImageBitmap(bitmapQRCode);
 		textItemName.setText(item.getItemName());
-		textPrice.setText(String.valueOf(item.getPrice())+"만 원");
-		textLost.setText(item.isLost()? "QR 인식됨":"이상 없음");
+		textPrice.setText(String.valueOf(item.getPrice())+"0,000 won");
+		textLost.setText(item.isLost()? "QR is readed":"No Problem");
 	}
 
 	@Override
@@ -77,7 +75,8 @@ public class ItemInfoActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem menuItem) {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
+		// as you specify a parent activity in AndroidManifest.xml.\
+
 		switch (menuItem.getItemId()) {
 		case R.id.action_save_qrcode:
 			FileInputStream in = null;
@@ -87,14 +86,18 @@ public class ItemInfoActivity extends Activity {
 											Environment.DIRECTORY_PICTURES),publicDirectoryPath);
 				if(!targetDirectory.exists())
 					targetDirectory.mkdir();
-				
+
 				File targetFile = new File(targetDirectory, item.getQRCodeFileName());
 				
 				in = openFileInput(item.getQRCodeFileName());
 				out = new FileOutputStream(targetFile);
+
 				for(int data;(data = in.read()) != -1;){
 					out.write(data);
 				}
+
+				MediaScanning scanning = new MediaScanning(getApplicationContext(), targetFile);
+
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -112,20 +115,21 @@ public class ItemInfoActivity extends Activity {
 					e.printStackTrace();
 				}
 			}
-			Toast.makeText(getApplicationContext(), "저장 완료", Toast.LENGTH_SHORT).show();
+
+			Toast.makeText(getApplicationContext(), "Save Successfully", Toast.LENGTH_SHORT).show();
 			break;
 		case R.id.action_share_qrcode:
 			Intent intentSend = new Intent(Intent.ACTION_SEND);
 			intentSend.setType("image/*");
 			intentSend.putExtra(Intent.EXTRA_STREAM, 
 					Uri.parse(getFilesDir()+"/"+item.getQRCodeFileName()));
-			startActivity(Intent.createChooser(intentSend, "공유하기"));
+			startActivity(Intent.createChooser(intentSend, "share"));
 			break;
 		case R.id.action_remove_item:
 			AlertDialog dialog = new AlertDialog.Builder(ItemInfoActivity.this)
-					.setTitle("물품 삭제")
-					.setMessage("정말 삭제하시겠습니까?")
-					.setPositiveButton("네",
+					.setTitle("delete items")
+					.setMessage("Do you really want to delete?")
+					.setPositiveButton("Yes",
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog, int which) {
 									File fileQRCode = new File(item.getItemName());
@@ -134,7 +138,7 @@ public class ItemInfoActivity extends Activity {
 									finish();
 								}
 							})
-					.setNegativeButton("아니요",
+					.setNegativeButton("No",
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog, int which) {
 									dialog.dismiss();
@@ -143,7 +147,7 @@ public class ItemInfoActivity extends Activity {
 			dialog.show();
 			return true;
 		}
-		
+
 		return super.onOptionsItemSelected(menuItem);
 	}
 }

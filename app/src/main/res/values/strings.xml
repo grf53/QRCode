@@ -8,6 +8,7 @@
     <string name="action_save_qrcode">QR Code 저장</string>
     <string name="action_share_qrcode">QR Code 공유</string>
     <string name="action_remove_item">물품 제거</string>
+    <string name="action_log_out">로그아</string>
     
     <string name="description_starting_logo">Logo</string>
     <string name="description_qrcode_info">QRCode</string>

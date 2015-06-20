@@ -1,14 +1,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:QRcode="http://schemas.android.com/apk/res-auto"
-    tools:context="software.experiment.qrcode.MainActivity" >
+    tools:context="software.experiment3.assignmentmid.MainActivity" >
 
     <item
         android:id="@+id/action_add_item"
         android:orderInCategory="100"
-        QRcode:showAsAction="always"
+        android:showAsAction="always"
         android:title="@string/action_add_item"
-        android:icon="@android:drawable/ic_menu_add"/>
+        android:icon="@mipmap/content_new_white"/>
+    
+    <item
+        android:id="@+id/action_log_out"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="@string/action_log_out"
+        android:icon="@mipmap/device_access_not_secure_white"/>
 
 </menu>
 
