@@ -4,22 +4,13 @@
     android:layout_height="wrap_content"
     android:background="@drawable/round_white_orange"
     android:layout_marginTop="10dp"
-<<<<<<< HEAD
     android:layout_marginBottom="10dp">
-=======
-    android:layout_marginBottom="10dp"
-    >
->>>>>>> origin/master
     
     <ImageView
         android:id="@+id/image_list_bullet" 
         android:layout_width="40dp"
         android:layout_height="40dp"
-<<<<<<< HEAD
         android:src="@drawable/bullet"
-=======
-        android:src="@drawable/star"
->>>>>>> origin/master
         android:padding="5dp"/>
 
     <ImageView
